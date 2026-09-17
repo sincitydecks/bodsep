@@ -1,0 +1,69 @@
+---
+import { SITE, CONTACT } from '../consts';
+const year = new Date().getFullYear();
+const directions = 'https://www.google.com/maps/dir/?api=1&destination=Royal+Flying+Doctor+Service+Darwin+Tourist+Facility+Stokes+Hill+Wharf';
+---
+<footer class="foot">
+  <div class="container foot__grid">
+    <div class="foot__brand">
+      <img src="/brand/logo-1942.svg" alt={SITE.name} width="180" height="58" />
+      <p class="foot__tag">Presented with the Royal Flying Doctor Service, on Stokes Hill Wharf, Darwin.</p>
+      <img class="foot__trip" src="/images/badges/tripadvisor-2025.webp" alt="Tripadvisor Travelers' Choice Awards 2025" width="500" height="500" loading="lazy" decoding="async" />
+    </div>
+
+    <div class="foot__contact">
+      <h4>Visit</h4>
+      <p>{CONTACT.address}</p>
+      <p><a href={`tel:${CONTACT.phone.replace(/[^0-9+]/g, '')}`}>{CONTACT.phone}</a></p>
+      <p><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+      <p class="foot__dir"><a href={directions} target="_blank" rel="noopener">Open in Google Maps →</a></p>
+      <p class="foot__coord record">12°27′S · 130°50′E</p>
+    </div>
+  </div>
+
+  <div class="container foot__ack">
+    <p>
+      We acknowledge the Traditional Custodians of the land on which this experience is shared, and pay our
+      respects to Elders past and present. This experience contains the voices, images and stories of people
+      who have passed away.
+    </p>
+  </div>
+
+  <div class="container foot__base">
+    <span>© {year} {SITE.name}</span>
+    <a href="/memorial">In Memoriam</a>
+    <a href="/terms">Terms &amp; Conditions</a>
+    <span>Every on-site purchase supports the Royal Flying Doctor Service.</span>
+  </div>
+</footer>
+
+<style>
+  .foot { position: relative; z-index: 2; background: var(--char); border-top: 1px solid var(--line); padding: 64px 0 32px; overflow: hidden; }
+  /* the chart surfaces here — depth contours rising to near-legibility */
+  .foot::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='700' viewBox='0 0 1200 700'%3E%3Cg fill='none' stroke='%23ECE7DB' stroke-opacity='0.05' stroke-width='1.1'%3E%3Cpath d='M-20 160 C 200 110, 420 155, 620 105 C 830 55, 1030 100, 1220 60'/%3E%3Cpath d='M-20 280 C 220 230, 440 278, 640 228 C 850 178, 1040 222, 1220 185'/%3E%3Cpath d='M-20 420 C 240 370, 460 420, 660 370 C 866 320, 1050 365, 1220 330'/%3E%3Cpath d='M-20 570 C 260 520, 480 572, 680 522 C 880 472, 1060 518, 1220 485'/%3E%3C/g%3E%3Cg stroke='%23ECE7DB' stroke-opacity='0.045' stroke-width='1'%3E%3Cpath d='M900 90 v-40 M900 140 v40 M860 115 h-40 M940 115 h40'/%3E%3Ccircle cx='900' cy='115' r='17' fill='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: max(1200px, 100%) auto;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  }
+  .foot > .container { position: relative; z-index: 1; }
+  .foot__grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+  .foot__dir { margin-top: 14px !important; }
+  .foot__dir a { color: var(--gold-bright); border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; transition: border-color 0.2s var(--ease); }
+  .foot__dir a:hover { border-color: var(--gold); }
+  .foot__coord { color: var(--bone-mute); margin-top: 10px !important; font-size: 0.62rem; }
+  .foot__brand img:first-child { height: 40px; width: auto; margin-bottom: 16px; }
+  .foot__tag { color: var(--bone-dim); font-size: 0.92rem; max-width: 34ch; }
+  .foot__trip { width: 74px; height: 74px; border-radius: 50%; margin-top: 6px; }
+  .foot h4 { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.24em; color: var(--gold); margin-bottom: 16px; text-transform: uppercase; font-weight: 500; }
+  .foot__contact p { color: var(--bone-dim); font-size: 0.92rem; margin: 0 0 8px; }
+  .foot__contact a:hover { color: var(--gold-bright); }
+
+  .foot__ack { padding-top: 24px; }
+  .foot__ack p { color: var(--bone-mute); font-size: 0.8rem; line-height: 1.7; max-width: 82ch; font-style: italic; font-family: var(--font-serif); margin: 0; }
+  .foot__base { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 24px; color: var(--bone-mute); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; }
+  .foot__base a { color: var(--bone-dim); border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; transition: color 0.2s var(--ease), border-color 0.2s var(--ease); }
+  .foot__base a:hover { color: var(--gold-bright); border-color: var(--gold); }
+  @media (max-width: 860px) { .foot__grid { grid-template-columns: 1fr; gap: 32px; } }
+</style>
